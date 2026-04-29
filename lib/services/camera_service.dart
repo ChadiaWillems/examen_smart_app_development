@@ -9,8 +9,6 @@ class CameraService {
     final RecognizedText recognizedText = await _textRecognizer.processImage(inputImage);
 
     String fullText = recognizedText.text.toLowerCase();
-    
-    print('Gescande tekst: $fullText');
     return fullText;
   }
 

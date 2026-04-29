@@ -83,7 +83,6 @@ class _HomeScreenState extends State<HomeScreen>
                                     color: const Color(
                                       0xFF1B5AEE,
                                     ).withOpacity(0.4),
-                                    // De schaduw "ademt" ook mee omdat de hele container schaalt!
                                     blurRadius: 30,
                                     offset: Offset(0, buttonSize * 0.15),
                                   ),
@@ -105,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen>
                                       fontSize: fontSize,
                                       fontWeight: FontWeight.w600,
                                       decoration: TextDecoration
-                                          .none, // Voorkomt gele strepen
+                                          .none,
                                     ),
                                   ),
                                 ],

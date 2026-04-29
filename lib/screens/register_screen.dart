@@ -35,13 +35,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _isLoading = false;
 
   Future<void> _handleRegister() async {
-    // 1. Gebruik je al bestaande validatie check
     if (!_validateFields()) return;
 
     setState(() => _isLoading = true);
 
     try {
-      // 2. Roep de provider aan
       await Provider.of<AuthProvider>(context, listen: false).signUp(
         _emailController.text.trim(),
         _passwordController.text.trim(),
@@ -51,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       print("Registratie succesvol!");
 
       if (mounted) {
-        Navigator.pop(context); // Terug naar login of home
+        Navigator.pop(context);
       }
     } on FirebaseAuthException catch (e) {
       String errorMsg = "Er is iets misgegaan.";

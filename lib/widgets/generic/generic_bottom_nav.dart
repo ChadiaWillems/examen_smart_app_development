@@ -21,19 +21,16 @@ class GenericBottomNav extends StatefulWidget {
 }
 
 class _GenericBottomNavState extends State<GenericBottomNav> {
-  // Voor de offline check
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   bool _isOffline = false;
 
   @override
   void initState() {
     super.initState();
-    // Luister naar verbindingswijzigingen
     _connectivitySubscription = Connectivity().onConnectivityChanged.listen((
       List<ConnectivityResult> results,
     ) {
       setState(() {
-        // Als de lijst alleen 'none' bevat, zijn we offline
         _isOffline = results.contains(ConnectivityResult.none);
       });
     });

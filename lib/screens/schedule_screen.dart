@@ -15,12 +15,6 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
   FirestoreService _firestoreService = FirestoreService();
   final String uid = FirebaseAuth.instance.currentUser?.uid ?? '';
 
-  // We maken de data even onderdeel van de State
-  final List<Map<String, dynamic>> medicineData = [
-    {'name': 'Paracetamol', 'dosage': '500mg', 'isTaken': false},
-    {'name': 'Ibuprofen', 'dosage': '200mg', 'isTaken': true},
-  ];
-
   List<DateTime> _generateDisplayDays() {
     DateTime today = DateTime.now();
     return List.generate(7, (index) {

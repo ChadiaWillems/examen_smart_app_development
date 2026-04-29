@@ -27,7 +27,6 @@ class _MedicineScreenState extends State<MedicineScreen> {
     setState(() => _buttonStatus = 'loading');
 
     try {
-      // We voegen 'await' toe om zeker te weten dat de lokale cache het heeft geaccepteerd
       await FirestoreService().addMedicineToUserSchedule(
         medicineName: widget.medicineName,
         medicineData: data,
@@ -41,10 +40,9 @@ class _MedicineScreenState extends State<MedicineScreen> {
         Navigator.of(context).popUntil((route) => route.isFirst);
       }
     } catch (e) {
-      // RESET de knop bij een fout!
       setState(() => _buttonStatus = 'idle');
       if (mounted) {
-        _showErrorAlert(context); // Toon de retry-melding die we eerder maakten
+        _showErrorAlert(context);
       }
     }
   }

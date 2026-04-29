@@ -37,13 +37,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _bootstrapServices() async {
     try {
-      print("Stap 1: Notificaties opstarten...");
       await _notificationService.init();
-
-      print("Stap 2: Instellingen ophalen uit Firestore...");
       await _loadSettings();
-
-      print("Klaar! Alles is gesynchroniseerd.");
     } catch (e) {
       print("Er ging iets mis bij het opstarten: $e");
     }
@@ -383,7 +378,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     color: CupertinoColors.destructiveRed,
                   ),
                   onTap: () async {
-                    await auth.signOut(); // Gebruik de Provider actie!
+                    await auth.signOut();
                     if (mounted) {
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     }

@@ -25,16 +25,13 @@ class _ScannerScreenState extends State<ScannerScreen> {
   @override
   void initState() {
     super.initState();
-    print("DEBUG: ScannerScreen is opgestart!");
     _fetchMedicines();
   }
 
   Future<void> _fetchMedicines() async {
-    print("Start met ophalen medicijnen uit Firestore..."); // Log 1
 
     _firestoreService.getMedicines().listen(
       (snapshot) {
-        print("Snapshot ontvangen! Aantal documenten: ${snapshot.docs.length}");
 
         if (mounted) {
           setState(() {
@@ -120,7 +117,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
       );
 
       if (gescandeTekst.trim().isNotEmpty) {
-        print("Gescande tekst: $gescandeTekst");
       }
 
       String matchedRealName = "";
@@ -139,7 +135,6 @@ class _ScannerScreenState extends State<ScannerScreen> {
         setState(() {
           _hasFoundMatch = true;
         });
-        print("🔥 MATCH GEVONDEN: $matchedRealName");
 
         Navigator.of(context).push(
           CupertinoPageRoute(

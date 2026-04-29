@@ -17,7 +17,6 @@ class AuthProvider extends ChangeNotifier {
       _user = newUser;
 
       if (newUser != null) {
-        // Als er een user is, haal direct de naam op uit Firestore
         await _fetchUserProfile(newUser.uid);
       } else {
         _userName = null;
@@ -49,11 +48,9 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> signUp(String email, String password, String name) async {
-    // 1. Maak de gebruiker aan
     UserCredential userCredential = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
 
-    // 2. Maak direct het profiel aan in Firestore
     if (userCredential.user != null) {
       await FirestoreService().createUserProfile(
         userCredential.user!.uid,
@@ -61,8 +58,6 @@ class AuthProvider extends ChangeNotifier {
         email,
       );
     }
-    // De listener in de constructor van AuthProvider pikt de nieuwe user
-    // daarna automatisch op en haalt de naam op!
   }
 
   Future<void> signOut() async {
